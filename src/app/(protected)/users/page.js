@@ -17,6 +17,7 @@ import {
 import NextLink from "@/Components/NextLink";
 import { Box, Container, TextField, Typography } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
+import { ExternalLink } from "lucide-react";
 
 export default function Users() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -52,28 +53,28 @@ export default function Users() {
 
   const styles = {
     page: { backgroundColor: "#121212", minHeight: "100vh", py: 4 },
-    back : { px:2,color : "#ddd", border: '1px solid #ddd', mb:2},
+    back: { px: 2, color: "#ddd", border: "1px solid #ddd", mb: 2 },
     header: { color: "#fff", mb: 3 },
     textField: {
-    backgroundColor: "#2a2a2a",
-    borderRadius: "4px",
-    "& .MuiInputBase-root": {
-      color: "#fff",
-    },
-    "& .MuiInputLabel-root": {
-      color: "#aaa",
-    },
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#555",
-    },
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#777",
-    },
+      backgroundColor: "#2a2a2a",
+      borderRadius: "4px",
+      "& .MuiInputBase-root": {
+        color: "#fff",
+      },
+      "& .MuiInputLabel-root": {
+        color: "#aaa",
+      },
+      "& .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#555",
+      },
+      "&:hover .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#777",
+      },
 
-    "& .Mui-focused fieldset": {
-      borderColor: "#fff !important",
+      "& .Mui-focused fieldset": {
+        borderColor: "#fff !important",
+      },
     },
-  },
     tableHeader: { backgroundColor: "#1e1e1e", color: "#fff" },
     tableCell: { color: "#ddd", borderColor: "#444" },
   };
@@ -82,10 +83,10 @@ export default function Users() {
     <ProtectedRoutes>
       <Box sx={styles.page}>
         <Container>
-          <Button
-           component={NextLink} 
-           href="/dashboard"
-          sx={styles.back} > ← Back</Button>
+          <Button component={NextLink} href="/dashboard" sx={styles.back}>
+            {" "}
+            ← Back
+          </Button>
           <Typography variant="h4" sx={styles.header}>
             Users Management
           </Typography>
@@ -121,6 +122,7 @@ export default function Users() {
                 <Table>
                   <TableHead>
                     <TableRow sx={styles.tableHeader}>
+                      <TableCell sx={styles.tableCell}>Link</TableCell>
                       <TableCell sx={styles.tableCell}>Name</TableCell>
                       <TableCell sx={styles.tableCell}>Email</TableCell>
                       <TableCell sx={styles.tableCell}>Gender</TableCell>
@@ -132,9 +134,18 @@ export default function Users() {
                     {users.map((user) => (
                       <TableRow key={user.id}>
                         <TableCell sx={styles.tableCell}>
-                          <NextLink href={`/users/${user.id}`} style={{textDecoration : 'none'}}>
-                           <span style={{color: "#ffff",}}> {user.firstName} {user.lastName}</span>
+                          <NextLink
+                            href={`/users/${user.id}`}
+                            style={{ textDecoration: "none",color: "#ffff"  }}
+                          >
+                            <ExternalLink />
                           </NextLink>
+                        </TableCell>
+                        <TableCell sx={styles.tableCell}>
+                          <span style={{ color: "#ffff" }}>
+                            {" "}
+                            {user.firstName} {user.lastName}
+                          </span>
                         </TableCell>
                         <TableCell sx={styles.tableCell}>
                           {user.email}
