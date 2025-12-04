@@ -53,7 +53,7 @@ export const useAuthStore = create((set) => ({
       return { success: false, error: "Invalid response from server" };
     } catch (err) {
       console.error("Auth Error : ", err);
-      return { success: false, error: 'Network error' };
+      return { success: false, error: 'Invalid credentials' };
     } finally {
       set({ isLoading: false });
     }
